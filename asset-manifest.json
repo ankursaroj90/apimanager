@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/apimanager/static/css/main.9f788e94.css",
+    "main.js": "/apimanager/static/js/main.be1ac7bb.js",
+    "index.html": "/apimanager/index.html",
+    "main.9f788e94.css.map": "/apimanager/static/css/main.9f788e94.css.map",
+    "main.be1ac7bb.js.map": "/apimanager/static/js/main.be1ac7bb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f788e94.css",
+    "static/js/main.be1ac7bb.js"
+  ]
+}
