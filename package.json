@@ -1,22 +1,52 @@
 {
   "name": "swaggerfro",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Professional API Management Platform - Similar to APIdog",
   "private": true,
   "dependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "@monaco-editor/react": "^4.7.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.5.1",
+    "axios": "^1.10.0",
+    "chart.js": "^4.5.0",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.30.0",
+    "formik": "^2.4.5",
+    "js-beautify": "^1.14.9",
+    "jsoneditor": "^9.10.4",
+    "lodash": "^4.17.21",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^4.12.0",
+    "react-loading-skeleton": "^3.5.0",
+    "react-paginate": "^8.2.0",
+    "react-resizable-panels": "^0.0.55",
+    "react-router-dom": "^6.30.1",
+    "react-scripts": "^0.0.0",
+    "react-select": "^5.8.0",
+    "react-split-pane": "^0.1.92",
+    "react-syntax-highlighter": "^15.6.1",
+    "swagger-ui-react": "^5.26.2",
+    "uuid": "^9.0.1",
+    "web-vitals": "^3.5.0",
+    "yaml": "^2.3.4",
+    "yup": "^1.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +65,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "eslint": "^8.53.0",
+    "gh-pages": "^6.3.0",
+    "prettier": "^3.0.3"
+  },
+  "proxy": "http://localhost:8761",
+  "homepage": "https://ankursaroj90.github.io/apimanager"
 }
