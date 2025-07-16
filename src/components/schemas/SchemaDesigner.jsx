@@ -330,21 +330,24 @@ const SchemaDesigner = () => {
 
             {schema.type === 'object' && (
               <div className="properties-section">
+
                 <div className="section-header">
-                  <h3>Properties</h3>
+                  <h3>Fields</h3>
                   <button className="btn btn-secondary" onClick={addProperty}>
                     <FiPlus />
-                    Add Property
+                    Add Field
                   </button>
                 </div>
-
+                
                 {properties.length === 0 ? (
                   <div className="empty-state">
-                    <p>No properties defined</p>
-                    <button className="btn btn-primary" onClick={addProperty}>
-                      <FiPlus />
-                      Add Your First Property
-                    </button>
+                    <p>No fields defined</p>
+                    { (properties.length === 2 || properties.length << 2) && (
+                      <button className="btn btn-primary" onClick={addProperty}>
+                        <FiPlus />
+                        Add Your First field
+                      </button>
+                      )}
                   </div>
                 ) : (
                   <div className="properties-list">
@@ -479,6 +482,15 @@ const SchemaDesigner = () => {
                     ))}
                   </div>
                 )}
+                { properties.length > 0 && (
+                  <div className="section-header">
+                    {/* <h3>Properties</h3> */}
+                    <button className="btn btn-secondary" onClick={addProperty}>
+                      <FiPlus />
+                      Add Field
+                    </button>
+                  </div>
+                  )}
               </div>
             )}
           </div>

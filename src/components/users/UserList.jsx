@@ -6,7 +6,7 @@ import Pagination from '../common/Pagination';
 import Loading from '../common/Loading';
 import { useSearch } from '../../hooks/useSearch';
 import { usePagination } from '../../hooks/usePagination';
-import { userService } from '../../services/userService';
+// import { userService } from '../../services/userService';
 import toast from 'react-hot-toast';
 
 const UserList = () => {
@@ -50,7 +50,7 @@ const UserList = () => {
           id: '1',
           firstName: 'Ankur',
           lastName: 'Saroj',
-          email: 'ankur.saroj@worldline.com',
+          email: 'ankursaroj6396@google.com',
           phone: '+91 6396595947',
           role: 'Admin',
           status: 'active',
@@ -62,7 +62,7 @@ const UserList = () => {
           id: '2',
           firstName: 'Chetan',
           lastName: 'M A',
-          email: 'chetan.ma@worldline.com',
+          email: 'example@google.com',
           phone: '+91 555987-6543',
           role: 'Developer',
           status: 'active',

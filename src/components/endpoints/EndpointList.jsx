@@ -116,7 +116,7 @@ const EndpointList = () => {
               className="stat-icon"
               style={{ backgroundColor: getMethodColor(method) }}
             >
-              {method}
+              <span className="method-badge">{method}</span>
             </div>
             <div className="stat-content">
               <div className="stat-value">{count}</div>

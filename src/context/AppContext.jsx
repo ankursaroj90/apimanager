@@ -23,30 +23,6 @@ const initialState = {
 
   //fetched environments
   environments: [],
-
-  // environments: [
-  //   {
-  //     id: 'dev',
-  //     name: 'Development',
-  //     baseUrl: 'http://localhost:8761',
-  //     variables: { apiKey: 'dev-key-123' },
-  //     active: true
-  //   },
-  //   {
-  //     id: 'staging',
-  //     name: 'Staging',
-  //     baseUrl: 'https://api-staging.example.com',
-  //     variables: { apiKey: 'staging-key-456' },
-  //     active: false
-  //   },
-  //   {
-  //     id: 'prod',
-  //     name: 'Production',
-  //     baseUrl: 'https://api.example.com',
-  //     variables: { apiKey: 'prod-key-789' },
-  //     active: false
-  //   }
-  // ],
   
   // Request history
   requestHistory: [],
@@ -322,80 +298,6 @@ export function AppProvider({ children }) {
         }
       }
     };
-
-    // const sampleApi = initialState.apis[0];
-
-    const sampleEndpoints = [
-      {
-        id: uuidv4(),
-        apiId: sampleApi.id,
-        name: 'Get Users',
-        method: 'GET',
-        path: '/users',
-        summary: 'Retrieve a list of users',
-        description: 'Get all users with pagination support',
-        parameters: [
-          { name: 'page', in: 'query', type: 'integer', description: 'Page number' },
-          { name: 'size', in: 'query', type: 'integer', description: 'Page size' }
-        ],
-        responses: {
-          '200': {
-            description: 'Success',
-            schema: { type: 'object' }
-          }
-        },
-        tags: ['users']
-      },
-      {
-        id: uuidv4(),
-        apiId: sampleApi.id,
-        name: 'Create User',
-        method: 'POST',
-        path: '/users',
-        summary: 'Create a new user',
-        description: 'Create a new user account',
-        requestBody: {
-          required: true,
-          content: {
-            'application/json': {
-              schema: { type: 'object' }
-            }
-          }
-        },
-        responses: {
-          '201': {
-            description: 'User created',
-            schema: { type: 'object' }
-          }
-        },
-        tags: ['users']
-      }
-    ];
-
-    const sampleSchemas = [
-      {
-        id: uuidv4(),
-        apiId: sampleApi.id,
-        name: 'User',
-        type: 'object',
-        description: 'User object schema',
-        properties: {
-          id: { type: 'string', description: 'User ID' },
-          firstName: { type: 'string', description: 'First name' },
-          lastName: { type: 'string', description: 'Last name' },
-          email: { type: 'string', format: 'email', description: 'Email address' },
-          age: { type: 'integer', minimum: 18, description: 'User age' },
-          createdAt: { type: 'string', format: 'date-time', description: 'Creation date' }
-        },
-        required: ['id', 'firstName', 'lastName', 'email', 'age']
-      }
-    ];
-
-    // dispatch({ type: 'ADD_API', payload: initialState.apis[0] });
-    // dispatch({ type: 'SET_ENDPOINTS', payload: sampleEndpoints });
-    // dispatch({ type: 'ADD_SCHEMA', payload: sampleSchemas[0] });
-    // dispatch({ type: 'SET_CURRENT_API', payload: initialState.apis[0] });
-    // dispatch({type: 'SET_CURRENT_ENVIRONMENT', payload: initialState.environments[0].id});
   };
 
   const actions = {

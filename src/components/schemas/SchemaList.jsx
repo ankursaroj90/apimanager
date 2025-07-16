@@ -48,6 +48,8 @@ const SchemaList = () => {
 
   const handleCloneSchema = (schema) => {
     // In real app, this would clone the schema
+    // apiSchemas.push({ ...schema, id: undefined, name: `${schema.name} (Copy)` });
+    // schemaService.createSchema(apiId, schema);
     toast.success('Schema cloned successfully');
   };
 
@@ -142,9 +144,9 @@ const SchemaList = () => {
                 {schema.properties && Object.keys(schema.properties).length > 0 ? (
                   <div className="properties-summary">
                     <span className="properties-count">
-                      {Object.keys(schema.properties).length} properties
+                      Total properties: {Object.keys(schema.properties).length}
                     </span>
-                    <div className="property-list">
+                    {/* <div className="property-list">
                       {Object.entries(schema.properties).slice(0, 3).map(([key, prop]) => (
                         <span key={key} className="property-item">
                           {key}: {prop.type}
@@ -155,7 +157,7 @@ const SchemaList = () => {
                           +{Object.keys(schema.properties).length - 3} more
                         </span>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                 ) : (
                   <span className="no-properties">No properties defined</span>
@@ -164,7 +166,7 @@ const SchemaList = () => {
 
               {schema.required && schema.required.length > 0 && (
                 <div className="required-fields">
-                  <span className="required-label">Required:</span>
+                  <span className="required-label">Required: </span>
                   <span className="required-count">{schema.required.length} fields</span>
                 </div>
               )}
@@ -172,7 +174,7 @@ const SchemaList = () => {
 
             <div className="schema-footer">
               <div className="schema-dates">
-                <span className="date-label">Updated:</span>
+                <span className="date-label">Updated: </span>
                 <span className="date-value">
                   {formatDate(schema.updatedAt)}
                 </span>

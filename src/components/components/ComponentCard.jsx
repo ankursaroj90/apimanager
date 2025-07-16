@@ -71,13 +71,13 @@ const ComponentCard = ({ component, onEdit, onDelete, onClone }) => {
           <p className="component-description">{component.description}</p>
         )}
         
-        <div className="component-preview">
+        {/* <div className="component-preview">
           <h5>Specification Preview</h5>
           <pre className="spec-preview">
             {JSON.stringify(component.specification, null, 2).substring(0, 200)}
             {JSON.stringify(component.specification, null, 2).length > 200 && '...'}
           </pre>
-        </div>
+        </div> */}
       </div>
 
       <div className="component-footer">

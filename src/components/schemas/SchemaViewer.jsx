@@ -101,7 +101,7 @@ const SchemaViewer = () => {
 
             {schema.properties && (
               <div className="properties-table">
-                <h4>Properties</h4>
+                <h4>Field Details</h4>
                 <table>
                   <thead>
                     <tr>

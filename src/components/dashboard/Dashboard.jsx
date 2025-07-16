@@ -76,9 +76,23 @@ const Dashboard = () => {
           </div>
           <div className="header-right">
             <div className="current-environment">
-              <span className="env-label">Environment:</span>
-              <span className="env-name">{currentEnv?.name || 'Unknown'}</span>
-              <span className="env-status active">Active</span>
+              <span className="env-label">Environment: </span>
+              <span className="env-name">{currentEnv?.name || 
+                       <span 
+                          className="status-badge"
+                          style={{ backgroundColor: '#6b7280' }}
+                          >
+                            {'not set'}
+                        </span>   
+                }</span>
+              { currentEnv?.name && (
+                <span 
+                  className="status-badge"
+                  style={{ backgroundColor: '#10b981'}}
+                  >
+                    {'active'}
+                </span>
+                )}
             </div>
           </div>
         </div>
@@ -142,7 +156,7 @@ const Dashboard = () => {
 
       <div className="dashboard-grid">
         <div className="dashboard-section">
-          <div className="section-header">
+          <div className="header-left">
             <h2>Quick Actions</h2>
             <p>Get started with common tasks</p>
           </div>
@@ -170,7 +184,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="dashboard-section">
+        <div className="dashboard-section" id="api-health">
           <div className="section-header">
             <h2>API Health</h2>
             <p>Status overview of your APIs</p>
@@ -181,7 +195,9 @@ const Dashboard = () => {
               <div key={api.id} className="health-card">
                 <div className="health-header">
                   <span className="api-name">{api.name}</span>
-                  <span className={`health-status ${api.status}`}>
+                  <span className={`health-status ${api.status}`}
+                  style={{ color: api.status === 'active' ? '#10b981' : '#f59e0b' }}
+                  >
                     {api.status === 'active' ? <FiCheckCircle /> : <FiAlertCircle />}
                   </span>
                 </div>

@@ -128,6 +128,8 @@ const ComponentsLibrary = () => {
         })}
       </div>
 
+      <h2>All Components</h2>
+
       <div className="components-grid">
         {filteredComponents.map(component => (
           <ComponentCard

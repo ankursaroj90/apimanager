@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FiArrowLeft, FiEdit, FiMail, FiPhone, FiCalendar, FiClock, FiShield } from 'react-icons/fi';
-import { userService } from '../../services/userService';
+// import { userService } from '../../services/userService';
 import { formatDate, formatRelativeTime } from '../../utils/helpers';
 import Loading from '../common/Loading';
 import toast from 'react-hot-toast';
@@ -24,7 +24,7 @@ const UserDetail = () => {
         id: '1',
         firstName: 'Ankur',
         lastName: 'Saroj',
-        email: 'ankur.saroj@worldline.com',
+        email: 'ankursaroj6396@google.com',
         phone: '+91 6396595947',
         role: 'Admin',
         status: 'active',

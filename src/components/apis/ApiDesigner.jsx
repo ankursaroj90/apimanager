@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import Editor from '@monaco-editor/react';
 import apiService from '../../services/apiService'; // Assuming you have an apiService for API calls
+import { ta } from 'date-fns/locale';
 
 const ApiDesigner = () => {
   const { apiId } = useParams();
@@ -168,11 +169,55 @@ const ApiDesigner = () => {
   };
 
   const handleExport = () => {
+    // Construct the OpenAPI spec object
+    const openApiSpectoexport = {
+      openapi: '3.0.0',
+      info: {
+        title: api.name,
+        version: api.version,
+        description: api.description
+      },
+      tags: api.tags.map(tag => ({ name: tag })),
+      servers: [
+        {
+          url: api.baseUrl
+        }
+      ],
+      paths: {endpoints}, // You can populate paths here if needed
+      components: {
+        schemas: {schemas}, // Map your schemas here
+        responses: {},
+        parameters: {}
+      },
+      createdAt: api.createdAt || new Date().toISOString(),
+      updatedAt: api.updatedAt || new Date().toISOString(),
+    };
+  
+    // If the api.openApiSpec has paths, schemas, etc., merge them
+    // if (api.openApiSpec.paths && Object.keys(api.openApiSpec.paths).length > 0) {
+    //   openApiSpec.paths = api.openApiSpec.paths;
+    // }
+    // if (api.openApiSpec.components) {
+    //   openApiSpec.components = {
+    //     schemas: api.openApiSpec.components.schemas || {},
+    //     responses: api.openApiSpec.components.responses || {},
+    //     parameters: api.openApiSpec.components.parameters || {}
+    //   };
+    // }
+    // if (api.openApiSpec.info) {
+    //   openApiSpec.info = {
+    //     title: api.openApiSpec.info.title || api.name,
+    //     version: api.openApiSpec.info.version || api.version,
+    //     description: api.openApiSpec.info.description || api.description
+    //   };
+    // }
+  
+    // Prepare final export data
     const exportData = {
-      ...api,
+      openApiSpectoexport,
       exportedAt: new Date().toISOString()
     };
-
+  
     const blob = new Blob([JSON.stringify(exportData, null, 2)], {
       type: 'application/json'
     });
@@ -180,7 +225,7 @@ const ApiDesigner = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${api.name.toLowerCase().replace(/\s+/g, '-')}-api.json`;
+    a.download = `${api.name.toLowerCase().replace(/\s+/g, '-')}-swagger.json`;
     a.click();
     URL.revokeObjectURL(url);
   };

@@ -84,13 +84,79 @@ const ApiOverview = () => {
   };
 
   const handleExportApi = (api) => {
+
     //fetch endpoints and schemas for the API
     const apiEndpoints = endpoints.filter(ep => ep.apiId === api.id);
     const apiSchemas = schemas.filter(schema => schema.apiId === api.id);
-    api.endpoints = apiEndpoints;
-    api.schemas = apiSchemas;
+
+    const openApiSpec = {
+      openapi: '3.0.0',
+      info: {
+        title: api.name,
+        version: api.version,
+        description: api.description
+      },
+      tags: api.tags.map(tag => ({ name: tag })),
+      servers: [
+        {
+          url: api.baseUrl
+        }
+      ],
+      paths: {}, // You can populate paths here if needed
+      components: {
+        schemas: {}, // Map your schemas here
+        responses: {},
+        parameters: {}
+      },
+      createdAt: api.createdAt || new Date().toISOString(),
+      updatedAt: api.updatedAt || new Date().toISOString(),
+    };
+    
+    //prepare the export data
+    apiEndpoints.forEach(endpoint => {
+      const path = endpoint.path.startsWith('/') ? endpoint.path : `/${endpoint.path}`;
+      if (!openApiSpec.paths[path]) {
+        openApiSpec.paths[path] = {};
+      }
+      openApiSpec.paths[path][endpoint.method.toLowerCase()] = {
+        summary: endpoint.summary,
+        description: endpoint.description,
+        tags: endpoint.tags,
+        parameters: endpoint.parameters.map(param => ({
+          name: param.name,
+          in: param.in,
+          required: param.required,
+          schema: {
+            type: param.type,
+            format: param.format
+          }
+        })),
+        responses: {
+          '200': {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object'
+                }
+              }
+            }
+          }
+        }
+      };
+    });
+
+    apiSchemas.forEach(schema => {
+      openApiSpec.components.schemas[schema.name] = {
+        type: schema.type,
+        properties: schema.properties,
+        required: schema.required || [],
+        example: schema.example || {},
+      };
+    });
+
     const exportData = {
-      api,
+      openApiSpec,
       exportedAt: new Date().toISOString()
     };
 
